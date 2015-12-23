@@ -3,5 +3,6 @@
 
 <h2>My first React Component!</h2>
 
-
-<%= react_component 'CommentBox', { data: @comments } %>
+<div id="comments">
+  <%= react_component 'CommentBox', { comments: @comments } %>
+</div>

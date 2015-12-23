@@ -1,10 +1,8 @@
 var CommentList = React.createClass({
   render: function() {
-    var commentNodes = this.props.data.map(function(comment) {
+    var commentNodes = this.props.comments.map(function(comment) {
       return (
-        <Comment author={comment.author} key={comment.id}>
-          {comment.text}
-        </Comment>
+        <Comment author={comment.author} key={comment.id} text={comment.text} />
       );
     });
     return (
