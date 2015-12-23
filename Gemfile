@@ -5,6 +5,9 @@ ruby '2.2.3'
 gem 'rails', '4.2.5'
 
 gem 'react-rails', '~> 1.5.0'
+gem 'active_model_serializers'
+gem 'ffaker'
+gem 'responders'
 
 gem 'sqlite3'
 gem 'sass-rails', '~> 5.0'
