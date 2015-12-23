@@ -1,31 +1,18 @@
 var CommentBox = React.createClass({
-  loadCommentsFromServer: function() {
-    $.ajax({
-      url: this.props.url,
-      dataType: 'json',
-      cache: false,
-      success: function(comment) {
-        this.setState({comments: comment});
-      }.bind(this),
-      error: function(xhr, status, err) {
-        console.error(this.props.url, status, err.toString());
-      }.bind(this)
-    });
+  getInitialState() {
+    return { comments: [] };
   },
-  getInitialState: function() {
-    return {comments: []};
+  componentWillMount() {
+    this.fetchComments();
+    setInterval(this.fetchComments, 1000);
   },
-  componentDidMount: function() {
-    this.loadCommentsFromServer();
-    setInterval(this.loadCommentsFromServer, this.props.pollInterval);
-  },
-  render: function() {
-    return (
-      <div className="commentBox">
-        <h1>Comments</h1>
-        <CommentList comments={this.state.comments} />
-        <CommentForm />
-      </div>
+  fetchComments() {
+    $.getJSON(
+      this.props.commentsPath,
+      (data) => this.setState({comments: data.comments})
     );
+  },
+  render() {
+    return <Comments comments={this.state.comments} />;
   }
 });

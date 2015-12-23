@@ -6,7 +6,10 @@ class CommentsController < ApplicationController
   end
 
   def create
-    respond_with Comment.create(comment_params)
+    @comment = Comment.new(comment_params)
+    @comment.save
+
+    redirect_to root_path
   end
 
   private

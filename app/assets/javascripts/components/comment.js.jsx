@@ -1,5 +1,5 @@
 var Comment = React.createClass({
-  render: function() {
+  render() {
     return (
       <div className="comment">
         <h2 className="commentAuthor">
