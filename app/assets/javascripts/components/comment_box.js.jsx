@@ -23,7 +23,7 @@ var CommentBox = React.createClass({
       }.bind(this)
     });
   },
-  render: function() {
+  render() {
     return (
       <div>
         <Comments comments={this.state.comments} />
