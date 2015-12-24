@@ -12,7 +12,23 @@ var CommentBox = React.createClass({
       (data) => this.setState({comments: data.comments})
     );
   },
-  render() {
-    return <Comments comments={this.state.comments} />;
+  handleCommentSubmit: function ( comment ) {
+    $.ajax({
+      data: {comment: comment},
+      url: '/comments',
+      type: "POST",
+      dataType: "json",
+      success: function ( data ) {
+        this.setState({ comments: data });
+      }.bind(this)
+    });
+  },
+  render: function() {
+    return (
+      <div>
+        <Comments comments={this.state.comments} />
+        <CommentForm form={ this.state.form } onCommentSubmit={ this.handleCommentSubmit } />
+      </div>
+    );
   }
 });

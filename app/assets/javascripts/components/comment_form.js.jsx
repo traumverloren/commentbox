@@ -17,30 +17,21 @@ var CommentForm = React.createClass({
     }
     this.props.onCommentSubmit({author: author, text: text});
     this.setState({author: '', text: ''});
-
-    // submit
-    var formData = $( this.refs.form.getDOMNode() ).serialize();
-    this.props.onCommentSubmit( formData, this.props.form.action );
   },
-  render: function() {
+  render: function () {
     return (
-      <form className="commentForm" action="/comments" method="post" onSubmit={this.handleSubmit}>
-        <input
-          name="comment[author]"
-          type="text"
+      <form ref="form" className="comment-form" action='/comments' method="post" onSubmit={ this.handleSubmit }>
+        <p><input
+          ref="author"
           placeholder="Your name"
           value={this.state.author}
-          onChange={this.handleAuthorChange}
-        />
-        <input
-          name="comment[text]"
-          type="text"
+          onChange={this.handleAuthorChange} /></p>
+        <p><textarea ref="text"
           placeholder="Say something..."
           value={this.state.text}
-          onChange={this.handleTextChange}
-        />
-      <input type="submit" value="Post" action="/comments" method="post"/>
+          onChange={this.handleTextChange} /></p>
+        <p><button type="submit">Post comment</button></p>
       </form>
-    );
+    )
   }
 });
